@@ -53,7 +53,8 @@ const frontendConfig = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: './src/app/index.html'
+            template: './src/app/index.html',
+            base: '/'
         })
     ]
 };

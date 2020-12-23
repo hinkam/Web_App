@@ -26,3 +26,7 @@ export interface ITournamentInfo {
     seats_cnt: number
     stadium_location: string
 }
+
+export interface ITournamentQueryDict {
+    tournament_name: string
+}

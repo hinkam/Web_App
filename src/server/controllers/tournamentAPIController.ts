@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { Database, getDataBase } from '../database';
+import { ITournamentQueryDict } from '../types';
 
 let tournamentAPIController: null | TournamentAPIController = null;
 
@@ -12,7 +13,19 @@ export class TournamentAPIController {
 
     async getAllTournaments(req: Request, res: Response): Promise<void> {
         const tournamentmodel = await this._database.getTournamentDBModel();
-        const tournamentinfo = await tournamentmodel.getTournaments();
+        const tournamentsinfo = await tournamentmodel.getTournaments();
+        if (!tournamentsinfo) {
+            res.status(404);
+            res.send();
+        } else {
+            res.json(tournamentsinfo);
+        }
+        tournamentmodel.release();
+    }
+
+    async getTournament(req: Request<ITournamentQueryDict>, res: Response): Promise<void> {
+        const tournamentmodel = await this._database.getTournamentDBModel();
+        const tournamentinfo = await tournamentmodel.getTournament(req.params.tournament_name);
         if (!tournamentinfo) {
             res.status(404);
             res.send();

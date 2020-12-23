@@ -1,15 +1,26 @@
 import { Request, Response, Router } from 'express';
+import { authMiddleware } from '../../controllers';
 import { authApiRouter } from './auth';
-import { tournamentAPIController } from '../../controllers';
+import { tournametsAPIRouter } from './tournaments';
+import { userApiRouter } from './user';
 
-export const apiRouter = Router();
+export async function getAPIRouter(): Promise<Router> {
 
-apiRouter.use('/auth', authApiRouter);
+    const apiRouter = Router();
 
-apiRouter.get('/', (req: Request, res: Response) => {
-    res.send('Hello');
-});
+    apiRouter.use('/auth', authApiRouter);
 
-apiRouter.get('/tournams', async (req: Request, res: Response) => {
-    await (await tournamentAPIController()).getAllTournaments(req, res);
-});
+    apiRouter.use('/tournams', tournametsAPIRouter);
+
+    apiRouter.use('/user', (await authMiddleware()).middleware);
+
+    apiRouter.use('/user', userApiRouter);
+
+    apiRouter.get('/', (req: Request, res: Response) => {
+        res.send('Hello');
+    });
+
+    return apiRouter;
+
+}
+

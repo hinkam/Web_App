@@ -1,0 +1,4 @@
+button {
+    color: black !important;
+    background: linear-gradient(90deg, rgba(255,0,0,1) 0%, rgba(255,169,0,1) 16%, rgba(252,255,0,1) 35%, rgba(0,255,19,1) 55%, rgba(0,243,255,1) 77%, rgba(0,7,255,1) 100%) !important;
+}

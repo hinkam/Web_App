@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Card, Col, Row, Image, Container } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 interface TournamentCardProps {
     image_path: string
@@ -31,11 +32,12 @@ export class TournamentCard extends React.Component<TournamentCardProps> {
                                     <Col><Card.Text>Location: {this.props.stadium_location}</Card.Text></Col>
                                 </Row>
                                 <Row>
-                                    <Button
-                                        // Router link
-                                        variant="primary">
-                                        Show tickets
-                                    </Button>
+                                    <Link to={`/tournament/${this.props.tournament_name}`}>
+                                        <Button
+                                            variant="primary">
+                                            Show info
+                                        </Button>
+                                    </Link>
                                 </Row>
                             </Col>
                             <Col sm={4}>

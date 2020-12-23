@@ -1,12 +1,19 @@
 import express, { Request, Response, Router } from 'express';
 import  path from 'path';
 
-import { apiRouter } from './api';
+import { getAPIRouter } from './api';
 
-export const indexRouter = Router();
+export async function getIndexRouter(): Promise<Router> {
 
-indexRouter.use('/api', apiRouter);
-indexRouter.use(express.static(path.resolve(__dirname, '../../../dist/app')));
-indexRouter.get('*', (req: Request, res: Response) => {
-    res.sendFile(path.resolve(__dirname, '../../../dist/app/index.html'));
-});
+    const indexRouter = Router();
+
+    indexRouter.use('/api', await getAPIRouter());
+    indexRouter.use(express.static(path.resolve(__dirname, '../../../dist/app')));
+    indexRouter.get('*', (req: Request, res: Response) => {
+        res.sendFile(path.resolve(__dirname, '../../../dist/app/index.html'));
+    });
+
+    return indexRouter;
+}
+
+

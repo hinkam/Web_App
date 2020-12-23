@@ -7,7 +7,8 @@ const accountRequests = {
     createaccounttable: sql(resolve(__dirname, './sql/createaccounttable.sql')),
     checkuserexists: sql(resolve(__dirname, './sql/checkuserexists.sql')),
     adduser: sql(resolve(__dirname, './sql/adduser.sql')),
-    getuserinfo: sql(resolve(__dirname, './sql/getuserinfo.sql'))
+    getuserinfo: sql(resolve(__dirname, './sql/getuserinfo.sql')),
+    getuserbytoken: sql(resolve(__dirname, './sql/getuserbytoken.sql'))
 };
 
 
@@ -43,6 +44,15 @@ export class AccountDBModel implements Initializeable, Releaseable {
         }
         return null;
     }
+
+    async getUserByToken(token: string): Promise<string | null> {
+        const response = await this._client.query<{username : string}>(accountRequests.getuserbytoken, [ token ]);
+        if (response.rows.length > 0 && response.rows[0]) {
+            return response.rows[0].username;
+        }
+        return null;
+    }
+
 
     release(): void {
         this._client.release();
