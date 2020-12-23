@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form, Container } from 'react-bootstrap';
 
 
 interface LoginPageState {
@@ -51,33 +51,35 @@ export class LoginPage extends React.Component<unknown, LoginPageState> {
     render(): JSX.Element {
         return (
             <>
-                <Form>
-                    <Form.Group>
-                        <Form.Label>Nickname</Form.Label>
-                        <Form.Control
-                            type="text"
-                            placeholder="Enter email"
-                            value={this.state.nickname}
-                            onChange={this.handleNickname} />
-                    </Form.Group>
-                    <Form.Group>
-                        <Form.Label>Password</Form.Label>
-                        <Form.Control
-                            type="password"
-                            placeholder="Password"
-                            value={this.state.password}
-                            onChange={this.handlePassword} />
-                        <Form.Text
-                            style={{ visibility: this.state.warningLabelVisibility, color: 'red' }}>
-                            Incorrect password or username
-                        </Form.Text>
-                    </Form.Group>
-                    <Button
-                        onClick = {this.onButtonClicked}
-                        variant="primary">
-                        Login
-                    </Button>
-                </Form>
+                <Container style={ { maxWidth: '570px' } }>
+                    <Form>
+                        <Form.Group>
+                            <Form.Label>Nickname</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder="Enter email"
+                                value={this.state.nickname}
+                                onChange={this.handleNickname} />
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Label>Password</Form.Label>
+                            <Form.Control
+                                type="password"
+                                placeholder="Password"
+                                value={this.state.password}
+                                onChange={this.handlePassword} />
+                            <Form.Text
+                                style={{ visibility: this.state.warningLabelVisibility, color: 'red' }}>
+                                Incorrect password or username
+                            </Form.Text>
+                        </Form.Group>
+                        <Button
+                            onClick = {this.onButtonClicked}
+                            variant="primary">
+                            Login
+                        </Button>
+                    </Form>
+                </Container>
             </>
         );
     }

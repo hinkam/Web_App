@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Form } from 'react-bootstrap';
+import { Button, Container, Form } from 'react-bootstrap';
 
 
 interface RegisterPageState {
@@ -27,7 +27,7 @@ export class RegisterPage extends React.Component<unknown, RegisterPageState> {
     }
 
     async onButtonClicked(): Promise<void> {
-        if (this.state.password == this.state.reppassword) {
+        if (this.state.password == this.state.reppassword && this.state.nickname.length > 0) {
             const response = await fetch( '/api/auth/register',  {
                 method: 'POST',
                 headers: {
@@ -67,41 +67,43 @@ export class RegisterPage extends React.Component<unknown, RegisterPageState> {
     render(): JSX.Element {
         return (
             <>
-                <Form>
-                    <Form.Group>
-                        <Form.Label>Nickname</Form.Label>
-                        <Form.Control
-                            type="text"
-                            placeholder="Enter email"
-                            value={this.state.nickname}
-                            onChange={this.handleNickname} />
-                    </Form.Group>
-                    <Form.Group>
-                        <Form.Label>Password</Form.Label>
-                        <Form.Control
-                            type="password"
-                            placeholder="Password"
-                            value={this.state.password}
-                            onChange={this.handlePassword} />
-                    </Form.Group>
-                    <Form.Group>
-                        <Form.Label>Repeat password</Form.Label>
-                        <Form.Control
-                            type="password"
-                            placeholder="Password"
-                            value={this.state.reppassword}
-                            onChange={this.handleRePassword} />
-                        <Form.Text
-                            style={{ visibility: this.state.warningLabelVisibility }}>
-                            Passwords dont match
-                        </Form.Text>
-                    </Form.Group>
-                    <Button
-                        onClick = {this.onButtonClicked}
-                        variant="primary">
-                        Register
-                    </Button>
-                </Form>
+                <Container style={ { maxWidth: '570px' } }>
+                    <Form>
+                        <Form.Group>
+                            <Form.Label>Nickname</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder="Enter email"
+                                value={this.state.nickname}
+                                onChange={this.handleNickname} />
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Label>Password</Form.Label>
+                            <Form.Control
+                                type="password"
+                                placeholder="Password"
+                                value={this.state.password}
+                                onChange={this.handlePassword} />
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Label>Repeat password</Form.Label>
+                            <Form.Control
+                                type="password"
+                                placeholder="Password"
+                                value={this.state.reppassword}
+                                onChange={this.handleRePassword} />
+                            <Form.Text
+                                style={{ visibility: this.state.warningLabelVisibility }}>
+                                Passwords dont match
+                            </Form.Text>
+                        </Form.Group>
+                        <Button
+                            onClick = {this.onButtonClicked}
+                            variant="primary">
+                            Register
+                        </Button>
+                    </Form>
+                </Container>
             </>
         );
     }

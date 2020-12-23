@@ -34,12 +34,12 @@ export class TournamentCard extends React.Component<TournamentCardProps> {
                                     <Button
                                         // Router link
                                         variant="primary">
-                                        Buy ticket
+                                        Show tickets
                                     </Button>
                                 </Row>
                             </Col>
                             <Col sm={4}>
-                                <Image src={this.props.image_path} style={{ maxWidth: '350px', maxHeight: '180px' }}/>
+                                <Image className="float-right" src={this.props.image_path} style={{ maxWidth: '350px', maxHeight: '180px' }}/>
                             </Col>
                         </Container>
                     </Card.Body>
