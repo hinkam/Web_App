@@ -1,15 +1,21 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
+import { Route } from 'react-router-dom';
 
 import './app.css';
 
+import { NavBar } from '../navbar';
+import { MainPage } from '../main-page';
+import { LoginPage } from '../login-page';
+import { RegisterPage } from '../register-page';
 
 export class App extends React.Component {
     render(): JSX.Element {
         return (
             <>
-                <h1>Hello world</h1>
-                <Button variant="outline-primary">Why not</Button>
+                <NavBar/>
+                <Route exact path='/'><MainPage text='Text here'/></Route>
+                <Route path='/login'><LoginPage/></Route>
+                <Route path='/register'><RegisterPage/></Route>
             </>
         );
     }

@@ -10,4 +10,3 @@ indexRouter.use(express.static(path.resolve(__dirname, '../../../dist/app')));
 indexRouter.get('*', (req: Request, res: Response) => {
     res.sendFile(path.resolve(__dirname, '../../../dist/app/index.html'));
 });
-

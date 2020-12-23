@@ -39,12 +39,8 @@
                 }
             }
         ],
-        "@typescript-eslint/method-signature-style": [
-            "error",
-            "property"
-        ],
         "@typescript-eslint/naming-convention": [
-            "error",
+            "warn",
             {
                 "selector": ["classProperty", "classMethod", "objectLiteralMethod"],
                 "modifiers": ["private"],
@@ -95,6 +91,7 @@
         "@typescript-eslint/no-misused-promises": "off",
         "@typescript-eslint/no-unnecessary-boolean-literal-compare": "error",
         "@typescript-eslint/no-unsafe-assignment": 0,
+        "@typescript-eslint/unbound-method": "off",
 
         "arrow-spacing": [
             "error",
@@ -129,7 +126,7 @@
             "error",
             "always"
         ],
-        "space-before-blocks": 2,
+        "space-before-blocks": "warn",
         "space-before-function-paren": [
             "error",
             {

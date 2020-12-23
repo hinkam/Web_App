@@ -1,0 +1,16 @@
+DO $$ BEGIN
+CREATE TYPE USER_STATUS AS ENUM (
+    'User', 'Organiser', 'Manager' 
+);
+EXCEPTION
+	WHEN DUPLICATE_OBJECT THEN NULL;
+END $$;
+
+CREATE TABLE IF NOT EXISTS Account (
+    userid SERIAL PRIMARY KEY,
+    username VARCHAR(32) NOT NULL,
+    pwhash VARCHAR(128) NOT NULL,
+    joined DATE DEFAULT CURRENT_DATE,
+    issuspended BOOLEAN DEFAULT FALSE,
+    userStatus USER_STATUS DEFAULT 'User'
+);

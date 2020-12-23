@@ -16,15 +16,14 @@ const backendConfig = {
             {
                 test: /\.(ts|js)x?$/,
                 exclude: /node_modules/,
-                use: {
-                    loader: 'babel-loader'
-                },
+                use: 'babel-loader'
             }
         ]
     },
     node: {
         __dirname: true
-    }
+    },
+    mode: 'development'
 };
 
 const frontendConfig = {
@@ -48,15 +47,7 @@ const frontendConfig = {
             },
             {
                 test: /\.css$/,
-                use: [
-                    'style-loader',
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            modules: true
-                        }
-                    }
-                ]
+                use: ['style-loader','css-loader']
             }
         ]
     },

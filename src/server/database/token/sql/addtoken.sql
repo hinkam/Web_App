@@ -1,0 +1,1 @@
+INSERT INTO Token VALUES ($1, $2)

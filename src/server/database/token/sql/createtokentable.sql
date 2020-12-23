@@ -1,0 +1,4 @@
+CREATE TABLE IF NOT EXISTS Token (
+    token VARCHAR(128) PRIMARY KEY,
+    userid INTEGER REFERENCES Account
+);
