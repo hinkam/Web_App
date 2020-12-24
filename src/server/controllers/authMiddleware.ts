@@ -14,7 +14,6 @@ export class AuthMiddleware {
     async middleware(req: Request, res: Response, next: () => void): Promise<void> {
         const cookie = req.cookies as {access_token? : string};
         if (cookie.access_token && cookie.access_token.length > 0) {
-            console.log(cookie.access_token);
             const usermodel = await this._database.getAccountDBModel();
             const userName = await usermodel.getUserByToken(cookie.access_token);
             if (!userName) {
