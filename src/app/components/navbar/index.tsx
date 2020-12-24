@@ -1,9 +1,10 @@
 import React from 'react';
-import { Navbar, Nav, Container, Row, Col } from 'react-bootstrap';
+import { Navbar, Nav, Container, Row, Col, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 
 interface NavBarProps {
+    logoutCallBack: (isLogged: boolean, userName: string) => void
     userName: string
     isLogged: boolean
 }
@@ -11,6 +12,19 @@ interface NavBarProps {
 
 export class NavBar extends React.Component<NavBarProps> {
 
+    constructor(props: NavBarProps) {
+        super(props);
+        this.onButtonClicked = this.onButtonClicked.bind(this);
+    }
+
+    async onButtonClicked(): Promise<void> {
+        const response = await fetch( '/api/auth/logout' );
+        if (!response.ok) {
+            response.status;
+        } else {
+            this.props.logoutCallBack(false, ' ');
+        }
+    }
 
     render(): JSX.Element {
         return (
@@ -28,7 +42,9 @@ export class NavBar extends React.Component<NavBarProps> {
                                 </Nav.Link>
                                 <Nav.Link
                                     style={{ visibility: this.props.isLogged ? 'visible' : 'hidden' }}>
-                                    Logout
+                                    <Button onClick = {this.onButtonClicked}>
+                                            Logout
+                                    </Button>
                                 </Nav.Link>
                             </div>
                         </Row>

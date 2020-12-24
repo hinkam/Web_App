@@ -44,6 +44,19 @@ export class AuthAPIController {
         }
         usermodel.release();
     }
+
+    async logout(req: Request, res: Response): Promise<void> {
+        const cookie = req.cookies as {access_token? : string};
+        const tokenmodel = await this._database.getTokenDBModel();
+        if (cookie.access_token) {
+            await tokenmodel.deletetoken(cookie.access_token);
+            res.clearCookie('access_token');
+            res.status(200).redirect('/');
+            res.send();
+        }
+        tokenmodel.release();
+    }
+
 }
 
 export async function getAuthAPIController(): Promise<AuthAPIController> {

@@ -54,7 +54,7 @@ export class TournamentPage extends React.Component<TournamentPageProps, Tournam
                     <h1>{this.state.tournament_name}</h1>
                     <h3>Stadium Location {this.state.stadium_location}</h3>
                     <p>Seats left {this.state.seat_cnt}</p>
-                    <Link to="/">
+                    <Link to="/payment">
                         <Button>
                             Buy ticket
                         </Button>

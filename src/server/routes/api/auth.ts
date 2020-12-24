@@ -11,3 +11,7 @@ authApiRouter.post('/register', async (req: Request<unknown, unknown, IRegister>
 authApiRouter.post('/login', async (req: Request<unknown, unknown, ILogin>, res: Response) => {
     await (await authAPIController()).login(req, res);
 });
+
+authApiRouter.get('/logout', async (req: Request, res: Response) => {
+    await (await authAPIController()).logout(req, res);
+});

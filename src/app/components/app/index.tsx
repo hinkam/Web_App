@@ -8,6 +8,7 @@ import { MainPage } from '../main-page';
 import { LoginPage } from '../login-page';
 import { RegisterPage } from '../register-page';
 import { TournamentPage } from '../tournament-page';
+import { PaymentPage } from '../payment-page';
 
 interface AppState {
     isLogged: boolean
@@ -19,6 +20,7 @@ export class App extends React.Component<unknown, AppState> {
     constructor(props: unknown) {
         super(props);
         this.onLogin = this.onLogin.bind(this);
+        this.onLogout = this.onLogout.bind(this);
         this.state = {
             isLogged: false,
             userName: ' '
@@ -29,8 +31,11 @@ export class App extends React.Component<unknown, AppState> {
         this.setState({ isLogged, userName });
     }
 
+    onLogout(isLogged: boolean, userName: string): void {
+        this.setState({ isLogged, userName });
+    }
+
     async componentDidMount(): Promise<void> {
-        console.log('123123');
         const response = await fetch('/api/user');
         if (response.status != 401) {
             const answer = await response.json() as { userName: string };
@@ -44,11 +49,12 @@ export class App extends React.Component<unknown, AppState> {
     render(): JSX.Element {
         return (
             <>
-                <NavBar isLogged={this.state.isLogged} userName={this.state.userName}/>
+                <NavBar logoutCallBack={this.onLogout} isLogged={this.state.isLogged} userName={this.state.userName}/>
                 <Route exact path='/'><MainPage text='Text here'/></Route>
                 <Route path='/login'><LoginPage loginCallBack={this.onLogin} isLogged={this.state.isLogged}/></Route>
                 <Route path='/register'><RegisterPage/></Route>
                 <Route path='/tournament/:tournament_name' component={TournamentPage}/>
+                <Route path='/payment'><PaymentPage isLogged={this.state.isLogged}/></Route>
             </>
         );
     }

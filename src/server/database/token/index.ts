@@ -5,7 +5,8 @@ import { sql } from '../util';
 
 const tokenRequests = {
     createtokentable: sql(resolve(__dirname, './sql/createtokentable.sql')),
-    addtoken: sql(resolve(__dirname, './sql/addtoken.sql'))
+    addtoken: sql(resolve(__dirname, './sql/addtoken.sql')),
+    deletetoken: sql(resolve(__dirname, './sql/deletetoken.sql'))
 };
 
 
@@ -23,6 +24,10 @@ export class TokenDBModel implements Initializeable, Releaseable {
 
     async addtoken(token: string, userID: number): Promise<void> {
         await this._client.query(tokenRequests.addtoken, [ token, userID ]);
+    }
+
+    async deletetoken(token: string): Promise<void> {
+        await this._client.query(tokenRequests.deletetoken, [ token ]);
     }
 
     release(): void {

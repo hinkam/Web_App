@@ -16,6 +16,8 @@ export async function getAPIRouter(): Promise<Router> {
 
     apiRouter.use('/user', userApiRouter);
 
+    apiRouter.use('/logout', userApiRouter);
+
     apiRouter.get('/', (req: Request, res: Response) => {
         res.send('Hello');
     });
