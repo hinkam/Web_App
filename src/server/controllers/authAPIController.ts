@@ -43,6 +43,7 @@ export class AuthAPIController {
             res.send();
         }
         usermodel.release();
+        tokenmodel.release();
     }
 
     async logout(req: Request, res: Response): Promise<void> {

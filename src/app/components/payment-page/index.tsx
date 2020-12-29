@@ -46,10 +46,9 @@ export class PaymentPage extends React.Component<PaymentPageProps, PaymentPageSt
             }
         } else {
             return (
-                <Redirect to='/' />
+                <Redirect to='/login' />
             );
         }
-
     }
 }
 

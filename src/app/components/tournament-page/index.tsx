@@ -50,7 +50,7 @@ export class TournamentPage extends React.Component<TournamentPageProps, Tournam
         return (
             <>
                 <Container>
-                    <Image className="float-right" src='https://sun9-71.userapi.com/impg/XwoiQn2W02085PdIChXOK60mVcXqqJhvieMijQ/9a0YL36CJm0.jpg?size=512x392&quality=96&proxy=1&sign=faf63521fa31cd04d437cb0173bcebfc&type=album' />
+                    <Image className="float-right" src='https://adindex.ru/files2/publications/2018_02/169462_Image-3.png' />
                     <h1>{this.state.tournament_name}</h1>
                     <h3>Stadium Location {this.state.stadium_location}</h3>
                     <p>Seats left {this.state.seat_cnt}</p>

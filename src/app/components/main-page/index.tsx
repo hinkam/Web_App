@@ -41,7 +41,7 @@ export class MainPage extends React.Component<MainPageProps, MainPageState> {
             <>
                 <div>{this.state.tournaments.map((tournament) => {
                     return (<TournamentCard
-                        image_path="https://i.ytimg.com/vi/a855DlCa06o/maxresdefault.jpg"
+                        image_path="https://adindex.ru/files2/publications/2018_02/169462_Image-3.png"
                         tournament_name={tournament.tournament_name}
                         stadium_location={tournament.stadium_location}
                         seat_cnt={tournament.seat_cnt}/>);
